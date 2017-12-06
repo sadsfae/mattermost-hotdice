@@ -24,7 +24,7 @@ cd mattermost-hotdice
 
 * Run the Python application via ```python mattermost-hotdice.py```
    - You might want to run this via a systemd service or init script once you're happy with it.
-   - You should run this as an unprivileged user.
+   - You should run this as an unprivileged user, an example ```systemd``` service file is included.
 
 ### Mattermost Server Settings
 
