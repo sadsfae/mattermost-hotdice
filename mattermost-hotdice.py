@@ -14,8 +14,7 @@ from flask import jsonify
 
 app = Flask(__name__)
 
-USERNAME="vegas"
-
+# sanitize input for unicode
 _u = lambda t: t.decode('UTF-8', 'replace') if isinstance(t, str) else t
 
 def is_int(s):
@@ -60,12 +59,10 @@ def root():
     """
     Home handler
     """
-
     return "OK"
 
 if __name__ == "__main__":
     # wsgi server options
-    USERNAME = os.environ.get('USERNAME', USERNAME)
     port = int(os.environ.get('MATTERMOST_DKP_PORT', 8090))
     # use 0.0.0.0 if it shall be accessible from outside of host
     app.run(host='127.0.0.1', port=port)
