@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # simple flask app / API that can serve an outgoing webhook for Mattermost
 # acts as a simple dice roller
-import os
-import sys
 import requests
+import os
 import json
 import subprocess
 import random
@@ -38,12 +37,13 @@ def hotdice():
         request_json = request.get_json(force=True)
         text_input = str(request_json["text"])
 	dicerange_array=text_input.split()
-	if len(dicerange_array) > 1:
-          dicerange=str(dicerange_array[1])
-          if not is_int(dicerange):
+	# basic input sanitization
+    if len(dicerange_array) > 1:
+        dicerange=str(dicerange_array[1])
+        if not is_int(dicerange):
             dicerange='1000'
         else:
-          dicerange='1000'
+            dicerange='1000'
         user_name = str(request_json["user_name"])
         diceroll = random.randint(0, int(dicerange))
         diceroll_result = user_name + " rolled a %s out of %s" % (str(diceroll), str(dicerange))
