@@ -41,6 +41,11 @@ You only need one of these approaches.  Slash commands are a bit more configurab
 * Main Menu -> Integrations -> Outgoing Webhook
   - Add Outgoing Webhook
   - Content-type: ```application/json```
+  - Trigger Words:   
+```
+hotdice
+Hotdice
+```
   - Trigger When: ```First word matches a trigger word exactly```
   - Callback URLs:  ```http://localhost:8090/hotdice```
 
@@ -48,11 +53,17 @@ You only need one of these approaches.  Slash commands are a bit more configurab
 
 * Main Menu -> Integrations -> Slash Command 
   - Add Slash Command
-  - Description: /random 1000
-  - Command Trigger Word: random
-  - Request URL: http://localhost:8090/random
-  - Request Method: POST
+  - Description: ```/random 1000```
+  - Command Trigger Word: ```random```
+  - Request URL: ```http://localhost:8090/random```
+  - Request Method: ```POST```
 
 ### Action Pic
 
+* Webhook
+
 ![hotdice](/image/diceroll.png?raw=true)
+
+* Slash Command
+
+![hotdice_slashcmd](/image/diceroll-slashcommand.png?raw=true)
