@@ -54,6 +54,29 @@ def hotdice():
     else:
         return "405 Method Not Allowed"
 
+# same thing as above but for a slashcommand
+@app.route('/random', methods=['POST', 'GET'])
+def mattermost_random_integration():
+  tokens = flask.request.values.get('text').strip().split()
+  username = flask.request.values.get('user_name')
+  if len(tokens) == 0:
+    min_num = 0
+    max_num = 1000
+  elif len(tokens) == 1:
+    min_num = 0
+    max_num = int(tokens[0])
+  else:
+    flask.abort(400, 'Bad formatting')
+  result_num = random.randint(min_num, max_num)
+  response_text = ('A magic die is rolled by **{}**.  It could have been any '
+                   'number from **{}** to **{}**, but this time it turned up a '
+                   '**{}**.'.format(username, min_num, max_num, result_num))
+  response_dict = {
+      'response_type': 'in_channel', # everyone needs to see the result
+      'text': response_text
+  }
+  return flask.jsonify(response_dict)
+
 @app.route('/')
 def root():
     """
