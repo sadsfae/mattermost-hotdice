@@ -1,6 +1,8 @@
 #!/usr/bin/env python
-# simple flask app / API that can serve an outgoing webhook for Mattermost
-# acts as a simple dice roller
+# Basic flask app / API that can serve an outgoing
+# webhook or slash command for MatterMost.
+# This is a simple random dice roller.
+
 import requests
 import os
 import json
@@ -27,12 +29,10 @@ def is_int(s):
 @app.route('/hotdice', methods = ['GET', 'POST'])
 def hotdice():
     if request.method == 'GET':
-        """return the information for <user_id>"""
         request_data = request.get_data()
         return "nothing here\n"
         # your code goes here.
     if request.method == 'POST':
-        """modify/update the information for <user_id>"""
         request_json = request.get_json(force=True)
         text_input = str(request_json["text"])
 	dicerange_array=text_input.split()
